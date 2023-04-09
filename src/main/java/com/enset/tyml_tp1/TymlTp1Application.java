@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
@@ -23,11 +25,11 @@ public class TymlTp1Application {
 		 patientRepository.save(new Patient(null,"brahim",new Date(),false,152));
 		 patientRepository.save(new Patient(null,"lhoussayn",new Date(),false,120));
 		 patientRepository.save(new Patient(null,"igna",new Date(),true,172));
-
-		 patientRepository.findAll().forEach(p->{
-			 System.out.println(p.getNom());
-		 });
 		};
+	}
+	@Bean
+	PasswordEncoder passwordEncoder(){
+		return new BCryptPasswordEncoder();
 	}
 
 }
